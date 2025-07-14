@@ -7,11 +7,11 @@ import { Dispatch, SetStateAction } from "react";
 
 
 type Props = {
-  recipe: Recipe
-  setRecipes: Dispatch<SetStateAction<Recipe[]>>
+  recipe: Recipe;
+  setChangeState: Dispatch<SetStateAction<boolean>>
 }
 
-export const Stars: React.FC<Props> = ({ recipe, setRecipes }) => {
+export const Stars: React.FC<Props> = ({ recipe, setChangeState }) => {
   const { token } = useSelector((state: RootState) => state.user);
   async function rateRecipe(recipeId: string, rate: number) {
     await apiClient.post(`recipes/${recipeId}/rate`,
@@ -22,15 +22,7 @@ export const Stars: React.FC<Props> = ({ recipe, setRecipes }) => {
         }
       }
     ).then(() => {
-      apiClient
-        .get('/recipes/user', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => setRecipes(res.data))
-        .catch((err) => console.error(err));
-
+      setChangeState((prev) => !prev)
     })
   }
   return (

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import apiClient from '../utils/fetchRecipes';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { SingleRecipe } from '@/components/SingleRecipe';
+import Link from 'next/link';
 
 type SortBy = "name" | "rating" | "name-r" | "rating-r";
 type Recipe = {
@@ -108,7 +108,6 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px]  min-h-screen p-8 pb-20 gap-16 sm:p-5 font-[family-name:var(--font-geist-sans)] bg-gray-50">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-5xl">
-
         <input
           value={query}
           onChange={(e) => handleQuaryChange(e.target.value)}
@@ -123,7 +122,6 @@ export default function Home() {
           className="w-full max-w-xl px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
           type="text"
         />
-
         <div className="flex gap-4 flex-wrap">
           <button
             onClick={() => handleSortChange(sortby !== 'rating' ? 'rating' : 'rating-r')}
@@ -137,7 +135,6 @@ export default function Home() {
               <span>{sortby === 'rating' ? '↑' : '↓'}</span>
             )}
           </button>
-
           <button
             onClick={() => handleSortChange(sortby !== 'name' ? 'name' : 'name-r')}
             className={`cursor-pointer px-5 py-2 rounded-lg transition flex items-center gap-2
@@ -151,10 +148,17 @@ export default function Home() {
             )}
           </button>
         </div>
-
         <div className="w-full space-y-4">
           {filtredRecipes.map(recipe => (
-            <SingleRecipe key={recipe.id} recipe={recipe} setRecipes={setRecipes} />
+            <Link
+              key={recipe.id}
+              href={`${recipe.id}`}
+              className="block p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-50 transition"
+            >
+              <h3 className="text-lg font-semibold text-gray-800">{recipe.name}</h3>
+              <p className="text-sm text-gray-600 mt-1">{recipe.detail}</p>
+              <p className="text-sm text-gray-500 mt-2">{`Recipe rating: ${Number(recipe.rate).toFixed(1) ?? 'No rating yet'}`}</p>
+            </Link>
           ))}
         </div>
       </main>

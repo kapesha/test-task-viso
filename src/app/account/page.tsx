@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import apiClient from '../../utils/fetchRecipes';
 import { Recipe } from '@/types/Recipe';
-import { SingleRecipe } from '@/components/SingleRecipe';
+import Link from 'next/link';
 
 export default function Page() {
   const { loggedIn, token, authLoaded } = useSelector((state: RootState) => state.user);
@@ -41,7 +41,15 @@ export default function Page() {
           {recipes && recipes
             .sort((a, b) => a.name.localeCompare(b.name))
             .map(recipe => (
-              <SingleRecipe key={recipe.id} setRecipes={setRecipes} recipe={recipe} />
+              <Link
+                key={recipe.id}
+                href={`${recipe.id}`}
+                className="block p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-50 transition"
+              >
+                <h3 className="text-lg font-semibold text-gray-800">{recipe.name}</h3>
+                <p className="text-sm text-gray-600 mt-1">{recipe.detail}</p>
+                <p className="text-sm text-gray-500 mt-2">{`Recipe rating: ${Number(recipe.rate).toFixed(1) ?? 'No rating yet'}`}</p>
+              </Link>
             ))}
         </div>
       </div>
