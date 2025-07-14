@@ -4,7 +4,7 @@ import { RootState } from '@/store/store';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import apiClient from '../utils/fetchRecipes';
+import apiClient from '../../utils/fetchRecipes';
 import { Recipe } from '@/types/Recipe';
 import { SingleRecipe } from '@/components/SingleRecipe';
 

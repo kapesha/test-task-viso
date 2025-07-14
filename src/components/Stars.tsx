@@ -1,4 +1,4 @@
-import apiClient from "@/app/utils/fetchRecipes";
+import apiClient from "@/utils/fetchRecipes";
 import { StarSVG } from "./StarSVG"
 import { RootState } from "@/store/store";
 import { useSelector } from 'react-redux';

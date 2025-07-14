@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-import apiClient from './utils/fetchRecipes';
+import apiClient from '../utils/fetchRecipes';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { SingleRecipe } from '@/components/SingleRecipe';
 

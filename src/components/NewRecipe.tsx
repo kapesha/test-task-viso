@@ -1,5 +1,5 @@
 'use client'
-import apiClient from "@/app/utils/fetchRecipes";
+import apiClient from "@/utils/fetchRecipes";
 import { RootState } from "@/store/store";
 import { Recipe } from "@/types/Recipe";
 import { Dispatch, SetStateAction, useState } from "react";
