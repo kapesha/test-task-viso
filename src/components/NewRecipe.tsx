@@ -42,7 +42,13 @@ export const NewRecipe: React.FC<Props> = ({ setRecipes }) => {
             Authorization: `Bearer ${token}`,
           },
         }
-      ).then(res => setRecipes(prev => [...prev, res.data]))
+      ).then(res => {
+        setRecipes(prev => [...prev, res.data])
+        setName('')
+        setIngridients([''])
+        setInstructions([''])
+        setDetail('')
+      })
     }
   };
 

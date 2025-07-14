@@ -34,7 +34,7 @@ export default function Home() {
     const currentSorting = searchParams.get('sortBy') || ''
     const currentIngridient = searchParams.get('ingridientQuery') || ''
     setQuery(currentQuery)
-    setIngridientQuery(ingridientQuery)
+    setIngridientQuery(currentIngridient)
     setSortby(currentSorting)
   }, [searchParams])
 

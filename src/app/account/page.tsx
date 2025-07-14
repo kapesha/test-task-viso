@@ -38,9 +38,11 @@ export default function Page() {
           <h3 className="text-xl font-semibold mb-2">My Recipes</h3>
         </div>
         <div className="space-y-4">
-          {recipes && recipes.map(recipe => (
-            <SingleRecipe key={recipe.id} setRecipes={setRecipes} recipe={recipe} />
-          ))}
+          {recipes && recipes
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(recipe => (
+              <SingleRecipe key={recipe.id} setRecipes={setRecipes} recipe={recipe} />
+            ))}
         </div>
       </div>
       <div className="w-full md:w-1/3 md:order-2">
